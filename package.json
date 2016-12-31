@@ -5,14 +5,14 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "npm-run-all --parallel webDevServer test:watch",
-		"webDevServer": "webpack-dev-server --progress --hot --inline --colors --port 3000",
-		"lint": "eslint './src/**/*.js'",
-		"build": "npm-run-all --parallel clean-dist webpack",
-		"webpack": "webpack",
-		"clean-dist": "npm run remove-dist && mkdir ./dist",
-		"remove-dist": "rimraf ./dist",
 		"test": "mocha --watch-extensions js --reporter progress ./tools/testSetup.js 'src/**/*.test.js'",
 		"test:watch": "npm run test -- --watch",
+		"build": "npm-run-all --parallel clean-dist webpack",
+		"webpack": "webpack",
+		"webDevServer": "webpack-dev-server --progress --hot --inline --colors --port 3000",
+		"clean-dist": "npm run remove-dist && mkdir ./dist",
+		"remove-dist": "rimraf ./dist",
+		"lint": "eslint './src/**/*.js'",
 		"precommit": "npm run lint"
 	},
 	"babel": {
@@ -20,6 +20,16 @@
 			"es2015",
 			"stage-3"
 		]
+	},
+	"eslintConfig": {
+		"extends": "google",
+		"installedESLint": true,
+		"env": {
+			"browser": true,
+			"node": true,
+			"mocha": true
+		},
+		"parser": "babel-eslint"
 	},
 	"keywords": [],
 	"author": "Gabriel <ggodoyoliveira@gmail.com> (http://www.gabrielgodoy.com/)",
